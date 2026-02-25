@@ -3,9 +3,9 @@ const mysql = require("mysql2/promise");
 var connPool = mysql.createPool({
   connectionLimit: 5, // it's a shared resource, let's not go nuts.
   host: "127.0.0.1", // this will work
-  user: "C4131F25U57",
-  database: "C4131F25U57",
-  password: "3299",  // we really shouldn't be saving this here long-term -- and I probably shouldn't be sharing it with you...
+  user: "",
+  database: "",
+  password: "",  // we really shouldn't be saving this here long-term -- and I probably shouldn't be sharing it with you...
 });
 
 async function addOrder(data) {
