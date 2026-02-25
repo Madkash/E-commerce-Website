@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Order Management
+    link(rel="stylesheet", href="/css/main.css")
+  body
+    nav
+      ul
+        li: a(href="/about") About Us
+        li: a(href="/admin/orders") Orders (admin only)
+        li: a(href="/order") Place Order
+
+    h1 Order Management
+
+    .search-box
+      form(method="GET", action="/admin/orders")
+        input(type="text", name="query", placeholder="Search order-placer...")
+        select(name="status")
+          option(value="all") All Statuses
+          option(value="Placed") Placed
+          option(value="Shipped") Shipped
+          option(value="Delivered") Delivered
+        input(type="submit", value="Search")
+
+    if showingFilters
+      .tracking-status
+        p
+          strong Showing results for:
+          |  "#{filters.query}" , status="#{filters.status}"
+
+    if noResults
+      .tracking-status
+        p No orders found
+        p
+          em Try adjusting your search criteria.
+
+    else
+      table
+        tr
+          th ID
+          th Status
+          th Cost
+          th From
+          th Address
+          th Product
+          th Notes
+
+        each order in orders
+          tr
+            td
+              a(href=`/tracking/${order.id}`) #{order.id}
+            td= order.status
+            td $#{order.cost.toFixed(2)}
+            td= order.from
+            td !{order.address}
+            td= order.product
+            td= order.notes

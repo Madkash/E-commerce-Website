@@ -1,0 +1,72 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Place Order
+    link(rel="stylesheet", href="/css/main.css")
+
+  body
+    nav
+      ul
+        li
+          a(href="/about") About Us
+        li
+          a(href="/admin/orders") Orders (admin only)
+        li
+          a(href="/order") Place Order
+
+    h1 Place an Order
+
+    .prefill
+      button(onclick="prefillForm()") Prefill form
+
+    #order-output
+
+    form#order-form.order
+      .product
+        label(for="product") Select a Product:
+        select(name="product", id="product", onchange="handleProductChange()", required)
+          option(value="") Select a product
+          option(value="15") Happy Potato - $15.00
+          option(value="12") Sad Potato - $12.00
+          option(value="10") Angry Potato - $10.00
+          option(value="20") Potato with Message - $20.00
+
+      #quantityContainer
+        label(for="quantity") Quantity:
+        input(type="number", name="quantity", id="quantity", oninput="updateTotal()", required)
+
+      div
+        label(for="summary") Order Summary
+        p#totalCost Total Cost: Select a product and quantity for cost information
+
+      div
+        label(for="from") From:
+        input(type="text", name="from", id="from", required)
+
+      div
+        label(for="address") Recipient Name and Address:
+        textarea(name="address", id="address", rows="5", cols="40", required)
+
+      div
+        label(for="shipping") Select a Shipping Option:
+        .shipping-options
+          label.shipping-items
+            input(type="radio", name="shipping", value="Flat Rate")
+            | Flat Rate
+          label.shipping-items
+            input(type="radio", name="shipping", value="Ground")
+            | Ground
+          label.shipping-items
+            input(type="radio", name="shipping", value="Expedited")
+            | Expedited
+
+      div
+        label(for="Date") Order Date:
+        p#clock
+
+      div
+        button Submit
+
+    script(src="/js/order.js")

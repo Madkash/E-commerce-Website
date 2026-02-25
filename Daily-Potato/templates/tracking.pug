@@ -1,0 +1,123 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Order Tracking
+    link(rel="stylesheet", href="/css/main.css")
+
+  body
+    nav
+      ul
+        li: a(href="/about") About Us
+        li: a(href="/admin/orders") Orders (admin only)
+        li: a(href="/order") Place Order
+
+    h1 Order Tracking
+
+    .forms
+      .form1
+        .tracking-status
+          if order.status == "Placed"
+            strong Your order is confirmed and being prepared!
+            br
+            em We’ve received your order and our team is getting it ready for shipment.
+          else if order.status == "Cancelled"
+            strong Your order was
+            br
+            em cancelled!
+          else if order.status == "Shipped"
+            strong Your order was:
+            br
+            em shipped!
+          else
+            strong Your order was:
+            br
+            em delivered!
+
+        .details
+          label(for="order-details") Order Details
+          p
+            strong Order ID:
+            |  #{order.id}
+
+          p
+            strong Product:
+            |  #{order.product}
+
+          p
+            strong Quantity:
+            |  #{order.quantity}
+
+          p
+            strong Status:
+            |  #{order.status}
+
+          p
+            strong Shipping:
+            |  #{order.shipping}
+
+          p
+            strong Cost:
+            |  #{order.cost}
+
+          p
+            strong From:
+            |  #{order.from}
+
+          p
+            strong Address:
+            br
+            != order.address_html
+
+          p
+            strong Notes:
+            |  #{order.notes}
+
+          p
+            strong Order Date:
+            |  #{order.order_date}
+
+      .form2
+        .order-management
+          p
+            strong Order Management
+
+          if order.status == "Placed"
+            p#time-remaining(data-order-date=order.order_date)
+              em Time Remaining Until Order Ships:
+              span#countdown
+          else
+            p#time-remaining
+              em Time Remaining Until Order Ships:
+
+        if order.status == "Placed"
+          .canup-buttons
+            button#cancelOrder(type="submit" data-order-id=order.id) Cancel Order
+            button#updateShipping(type="button" onclick="updateShipping()") Update Shipping
+
+          form.update-shipping(action="/update_shipping", method="POST")
+            input(type="hidden", name="id", value=order.id)
+
+            .delivery-address
+              label(for="address") Delivery Address:
+              textarea(name="address", id="address", rows="3", cols="60", required)
+
+            .shipping-speed
+              label(for="shipping") Select shipping speed:
+
+              .shipping-options2
+                label.shipping-items
+                  input(type="radio", name="shipping", value="Flat Rate")
+                  | Flat Rate
+                label.shipping-items
+                  input(type="radio", name="shipping", value="Ground")
+                  | Ground
+                label.shipping-items
+                  input(type="radio", name="shipping", value="Expedited")
+                  | Expedited
+
+              .canup-buttons
+                button(type="submit") Update Shipping
+                button(type="button" onclick="cancelShipping()") Cancel
+
+    script(src="/js/update.js")

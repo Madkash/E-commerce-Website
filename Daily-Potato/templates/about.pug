@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Daily Potato
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Sofia")
+  body
+    nav
+      ul
+        li
+          a(href="/about") About Us
+        li
+          a(href="/admin/orders") Orders (admin only)
+        li
+          a(href="/order") Place Order
+
+    h1 Daily Potato
+
+    .about
+      img(src="/images/main.jpg", alt="Cool Potatoes")
+      .about-description
+        p
+          strong Daily Potato
+          |  was founded on the simple belief that nothing brightens someones day quite like receiving a potato in the mail. 
+          |  What started as a quirky prank among college friends quickly grew into a full-fledged start-up dedicated to spreading joy, 
+          |  one spud at a time. Each potato is carefully selected, hand-inscribed with a personalized message, 
+          |  and shipped straight to the recipients doorstep. You can ship our potatoes to:
+        ul
+          li Friends
+          li Family
+          li Your neighbor's pet fish
+          li Vegans
+        p
+          | Our service is perfect for birthdays, inside jokes, or just surprising a friend with something they will never expect. 
+          | Customers can choose from a variety of potato sizes, funny designs, and custom notes to make every delivery unique. 
+          | Whether its a heartfelt message or a silly doodle, 
+          em Daily Potato
+          |  ensures that every shipment delivers laughter and a story worth sharing.
+
+    section.team-section
+      .team-member
+        img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/960px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg", alt="Staff 1")
+        h3 George Washington
+        p CEO & Founder
+
+      .team-member
+        img(src="https://people.com/thmb/C500qFSp4qP0kRRYRKxhKaF8SQY%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29%3Afocal%28216x0%3A218x2%29/gene-wilder-435-cde06c2cdb8048e3a49cc25440589f3f.jpg", alt="Staff 2")
+        h3 Willy Wonka
+        p Head of Operations
+
+      .team-member
+        img(src="https://media.gq.com/photos/563d215a6ff00fb522b05b01/4%3A3/w_1552%2Ch_1164%2Cc_limit/RIP-charlie-brown.jpg", alt="Staff 3")
+        h3 Charlie Brown
+        p Creative Director

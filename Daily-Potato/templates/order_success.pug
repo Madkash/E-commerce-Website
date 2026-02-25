@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Daily Potato
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Sofia")
+
+  body
+    nav
+      ul
+        li: a(href="/about") About Us
+        li: a(href="/admin/orders") Orders (admin only)
+        li: a(href="/order") Place Order
+
+    h1 Order Success
+
+    .success
+      p Hip hip hooray! Your order has been placed succesfully.
+      p Your Order ID: #{order}
+      p You can Track your order using the link below:
+      a.button(href=`/tracking/${order_id}`) Track Your Order
